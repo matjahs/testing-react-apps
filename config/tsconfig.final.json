@@ -4,6 +4,7 @@
   "include": ["../src"],
   "compilerOptions": {
     "strict": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
+    "downlevelIteration": true
   }
 }

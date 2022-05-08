@@ -5,6 +5,7 @@
     {"path": "config/tsconfig.final.json"}
   ],
   "compilerOptions": {
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "downlevelIteration": true
   }
 }
