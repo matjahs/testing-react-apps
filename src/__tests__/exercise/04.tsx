@@ -4,24 +4,31 @@
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Login from "../../components/login";
+import faker from "faker";
+import type {LoginFormValues} from "../../components/login";
+
+function buildLoginForm({username, password}: Partial<LoginFormValues> = {}) {
+  return {
+    username: username ?? faker.internet.userName(),
+    password: password ?? faker.internet.password(),
+  };
+}
 
 test("submitting the form calls onSubmit with username and password", async () => {
+  const {username, password} = buildLoginForm();
   const handleSubmit = jest.fn();
 
   render(<Login onSubmit={handleSubmit} />);
 
-  const username = await screen.getByLabelText(/username/i);
-  const password = await screen.getByLabelText(/password/i);
-  const submit = await screen.getByRole("button", {name: /submit/i});
+  await userEvent.type(screen.getByLabelText(/username/i), username);
+  await userEvent.type(screen.getByLabelText(/password/i), password);
+  await userEvent.click(screen.getByRole("button", {name: /submit/i}));
 
-  await userEvent.type(username, "someUsername");
-  await userEvent.type(password, "somePassword");
-  await userEvent.click(submit);
-
-  expect(handleSubmit).toHaveBeencalledWith({
-    username: "someUsername",
-    password: "somePassword",
+  expect(handleSubmit).toHaveBeenCalledWith({
+    username,
+    password,
   });
+  expect(handleSubmit).toHaveBeenCalledTimes(1);
 });
 
 /*
