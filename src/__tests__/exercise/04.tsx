@@ -4,18 +4,18 @@
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Login from "../../components/login";
-import faker from "faker";
 import type {LoginFormValues} from "../../components/login";
+import {build, fake} from "@jackfranklin/test-data-bot";
 
-function buildLoginForm({username, password}: Partial<LoginFormValues> = {}) {
-  return {
-    username: username ?? faker.internet.userName(),
-    password: password ?? faker.internet.password(),
-  };
-}
+const loginFormValuesBuilder = build<LoginFormValues>({
+  fields: {
+    username: fake(f => f.internet.userName()),
+    password: fake(f => f.internet.password()),
+  },
+});
 
 test("submitting the form calls onSubmit with username and password", async () => {
-  const {username, password} = buildLoginForm();
+  const {username, password} = loginFormValuesBuilder();
   const handleSubmit = jest.fn();
 
   render(<Login onSubmit={handleSubmit} />);
