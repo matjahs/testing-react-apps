@@ -8,11 +8,10 @@
   "license": "GPL-3.0",
   "main": "index.js",
   "engines": {
-    "node": "12 || 14 || 15 || 16 || 17",
-    "npm": ">=7"
+    "node": "12 || 14 || 15 || 16",
+    "npm": ">=6"
   },
   "scripts": {
-    "postinstall": "patch-package --patch-dir config/patches",
     "build": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
@@ -21,10 +20,9 @@
     "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
     "format": "prettier \"**/*.+(js|json|less|css|html|ts|tsx|md)\" --write",
     "lint": "eslint .",
-    "validate": "npm-run-all --parallel build test:coverage lint typecheck",
+    "validate": "npm-run-all --parallel lint test:coverage build",
     "netlify": "npm run validate && cp -r coverage/lcov-report build/lcov-report",
-    "setup": "node setup",
-    "typecheck": "tsc -b"
+    "setup": "node setup"
   },
   "husky": {
     "hooks": {
@@ -34,32 +32,29 @@
   },
   "keywords": [],
   "dependencies": {
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^13.5.0",
     "import-all.macro": "^3.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-error-boundary": "^3.1.3",
-    "react-router": "^6.0.0-alpha.2",
-    "react-router-dom": "^6.0.0-alpha.2",
-    "react-test-renderer": "^17.0.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-error-boundary": "^3.1.4",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-test-renderer": "^18.1.0",
     "react-use-geolocation": "^0.1.1"
   },
   "devDependencies": {
-    "@jackfranklin/test-data-bot": "^1.3.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@types/react": "^17.0.30",
-    "@types/react-dom": "^17.0.9",
+    "@jackfranklin/test-data-bot": "^1.4.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.0",
     "faker": "^5.5.3",
     "husky": "^4.3.8",
-    "msw": "^0.35.0",
+    "msw": "^0.39.2",
     "npm-run-all": "^4.1.5",
-    "patch-package": "^6.4.7",
-    "prettier": "^2.4.1",
+    "prettier": "^2.6.2",
     "react-scripts": "^4.0.3",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4"
+    "typescript": "^4.6.3"
   },
   "eslintConfig": {
     "extends": [
@@ -85,7 +80,7 @@
   "bugs": {
     "url": "https://github.com/kentcdodds/testing-react-app/issues"
   },
-  "homepage": "https://testing-react-app-next.netlify.app",
+  "homepage": "https://testing-react-app.netlify.app",
   "browserslist": [
     ">0.2%",
     "not dead",

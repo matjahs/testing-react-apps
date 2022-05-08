@@ -2,21 +2,18 @@
 // 💯 setup function
 // http://localhost:3000/counter-hook
 
+import * as React from 'react'
 import {render, act} from '@testing-library/react'
 import useCounter from '../../components/use-counter'
 
-type UseCounterArgs = Parameters<typeof useCounter>[0]
-function setup({initialProps}: {initialProps?: UseCounterArgs} = {}) {
-  type ReturnVal = ReturnType<typeof useCounter>
-  type Ref = {current: ReturnVal}
-  let result: {current: ReturnVal | null} = {current: null}
-  function TestComponent(props: UseCounterArgs) {
-    result.current = useCounter(props)
+function setup({initialProps} = {}) {
+  const result = {}
+  function TestComponent() {
+    result.current = useCounter(initialProps)
     return null
   }
-  render(<TestComponent {...initialProps} />)
-
-  return result as Ref
+  render(<TestComponent />)
+  return result
 }
 
 test('exposes the count and increment/decrement functions', () => {

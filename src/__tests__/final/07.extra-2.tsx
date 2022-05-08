@@ -3,20 +3,14 @@
 // http://localhost:3000/easy-button
 
 import * as React from 'react'
-import {render, RenderOptions, screen} from '@testing-library/react'
+import {render, screen} from '@testing-library/react'
 import {ThemeProvider} from '../../components/theme'
 import EasyButton from '../../components/easy-button'
 
-function renderWithProviders(
-  ui: React.ReactElement,
-  {theme = 'light', ...options}: RenderOptions & {theme?: string} = {},
-) {
-  function Wrapper({children}: {children: React.ReactNode}) {
-    if (theme !== 'light' && theme !== 'dark') {
-      throw new Error('Invalid theme')
-    }
-    return <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
-  }
+function renderWithProviders(ui, {theme = 'light', ...options} = {}) {
+  const Wrapper = ({children}) => (
+    <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
+  )
   return render(ui, {wrapper: Wrapper, ...options})
 }
 
