@@ -1,8 +1,8 @@
 // mocking Browser APIs and modules
 // http://localhost:3000/location
 
-import {render, screen, act} from '@testing-library/react'
-import Location from '../../examples/location'
+import {render, screen, act} from "@testing-library/react";
+import Location from "../../examples/location";
 
 // 🐨 create your fake version of the geolocation API here:
 // - call it "mockedGeolocation"
@@ -18,13 +18,13 @@ import Location from '../../examples/location'
 // 💰 I'm going to give you this handy utility function
 // it allows you to create a promise that you can resolve/reject on demand.
 function deferred() {
-  let resolve: (value?: unknown) => void, reject: (reason?: unknown) => void
+  let resolve: (value?: unknown) => void, reject: (reason?: unknown) => void;
   const promise = new Promise((res, rej) => {
-    resolve = res
-    reject = rej
-  })
+    resolve = res;
+    reject = rej;
+  });
 
-  return {promise, resolve, reject}
+  return {promise, resolve, reject};
 }
 // 💰 Here's an example of how you use this:
 // const {promise, resolve, reject} = deferred()
@@ -34,7 +34,7 @@ function deferred() {
 // await promise
 // // assert on the resolved state
 
-test('displays the users current location', async () => {
+test("displays the users current location", async () => {
   // 🐨 create a fakePosition object that has an object called "coords" with latitude and longitude
   // 📜 https://developer.mozilla.org/en-US/docs/Web/API/GeolocationPosition
   //
@@ -64,7 +64,7 @@ test('displays the users current location', async () => {
   // 🐨 verify the loading spinner is no longer in the document
   //    (💰 use queryByLabelText instead of getByLabelText)
   // 🐨 verify the latitude and longitude appear correctly
-})
+});
 
 /*
 eslint

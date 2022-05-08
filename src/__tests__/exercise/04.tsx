@@ -1,11 +1,11 @@
 // form testing
 // http://localhost:3000/login
 
-import {render, screen} from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import Login from '../../components/login'
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import Login from "../../components/login";
 
-test('submitting the form calls onSubmit with username and password', () => {
+test("submitting the form calls onSubmit with username and password", () => {
   // 🐨 create a variable called "submittedData" and a handleSubmit function that
   // accepts the data and assigns submittedData to the data that was submitted
   // 💰 if you need a hand, here's what the handleSubmit function should do:
@@ -21,7 +21,7 @@ test('submitting the form calls onSubmit with username and password', () => {
   //
   // assert that submittedData is correct
   // 💰 use `toEqual` from Jest: 📜 https://jestjs.io/docs/en/expect#toequalvalue
-})
+});
 
 /*
 eslint
